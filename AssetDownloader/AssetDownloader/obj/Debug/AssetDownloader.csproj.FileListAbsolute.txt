@@ -1,0 +1,10 @@
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\obj\Debug\AssetDownloader.csprojAssemblyReference.cache
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\obj\Debug\AssetDownloader.AssetDownloader.resources
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\obj\Debug\AssetDownloader.Notice.resources
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\obj\Debug\AssetDownloader.Properties.Resources.resources
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\obj\Debug\AssetDownloader.csproj.GenerateResource.cache
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\bin\Debug\AssetDownloader.exe.config
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\bin\Debug\AssetDownloader.exe
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\bin\Debug\AssetDownloader.pdb
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\obj\Debug\AssetDownloader.exe
+F:\Sources\C#\AssetDownloader\AssetDownloader\AssetDownloader\obj\Debug\AssetDownloader.pdb
