@@ -172,228 +172,164 @@ namespace AssetDownloader
 
         private void Shirts(string ItemID)
         {
+            if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts"))
+            {
+                Directory.CreateDirectory( $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts");
+            }
+
+            string ID = $"https://assetdelivery.roblox.com/v1/asset?id={ItemID}";
+            string FileSource;
+            using (WebClient web = new WebClient())
+            {
+                web.DownloadFile(ID, $"{MainDirectory}\\TempFiles\\{ItemID}.p1");
+            }
+
+            FileSource = File.ReadAllText($"{MainDirectory}\\TempFiles\\{ItemID}.p1");
+
+            string ShirtActual = GetShirtAsset(FileSource);
+
+            string ShirtActualID = ShirtActual.Replace("http://www.roblox.com/asset/?id=", "");
+
+            using (WebClient web = new WebClient())
+            {
+                web.DownloadFile($"https://assetdelivery.roblox.com/v1/asset/?id={ShirtActualID}", $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts\\{ItemID}.png");
+            }
+
+            DialogResult dialog = Forms.Notify("Shirts template has finished downloading, would you like to open the directory?", true, false);
+            if (dialog == DialogResult.Yes)
+            {
+                Process.Start("explorer.exe",
+                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts");
+            }
             try
             {
-                if (!Directory.Exists(
-                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts"))
-                    Directory.CreateDirectory(
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts");
-
-                string ID = $"https://www.roblox.com/asset/?id={ItemID}";
-                string FileSource;
-                using (WebClient web = new WebClient())
-                {
-                    web.DownloadFile(ID, $"{MainDirectory}\\TempFiles\\{ItemID}");
-                }
-
-                FileSource = File.ReadAllText($"{MainDirectory}\\TempFiles\\{ItemID}");
-
-                if (FileSource.Contains("<url>"))
-                {
-                    using (WebClient Web = new WebClient())
-                    {
-                        File.Delete($"{MainDirectory}\\TempFiles\\{ItemID}");
-                        Web.DownloadFile(GetShirtAsset(FileSource),
-                            $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts\\{ItemID}.png");
-                        DialogResult dialog =
-                            Forms.Notify(
-                                "Shirt template has finished downloading, would you like to open the directory?", true,
-                                false);
-                        if (dialog == DialogResult.Yes)
-                        {
-                            Process.Start("explorer.exe",
-                                $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts\\");
-                        }
-                    }
-                }
-                else
-                {
-                    File.Move($"{MainDirectory}\\TempFiles\\{ItemID}",
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts\\{ItemID}.png");
-                    DialogResult dialog =
-                        Forms.Notify("Shirt template has finished downloading, would you like to open the directory?",
-                            true, false);
-                    if (dialog == DialogResult.Yes)
-                    {
-                        Process.Start("explorer.exe",
-                            $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Shirts\\");
-                    }
-                }
+                File.Delete($"{MainDirectory}\\TempFiles\\{ItemID}.p1");
             }
-            catch
-            {
-                Forms.Notify("Failed to download, do you have the correct ID?", false, true);
-            }
+            catch { }
         }
 
         private void Pant(string ItemID)
         {
+            if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants"))
+            {
+                Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants");
+            }
+
+            string ID = $"https://assetdelivery.roblox.com/v1/asset?id={ItemID}";
+            string FileSource;
+            using (WebClient web = new WebClient())
+            {
+                web.DownloadFile(ID, $"{MainDirectory}\\TempFiles\\{ItemID}.p1");
+            }
+
+            FileSource = File.ReadAllText($"{MainDirectory}\\TempFiles\\{ItemID}.p1");
+
+            string ShirtActual = GetShirtAsset(FileSource);
+
+            string ShirtActualID = ShirtActual.Replace("http://www.roblox.com/asset/?id=", "");
+
+            using (WebClient web = new WebClient())
+            {
+                web.DownloadFile($"https://assetdelivery.roblox.com/v1/asset/?id={ShirtActualID}", $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants\\{ItemID}.png");
+            }
+
+            DialogResult dialog = Forms.Notify("Pants template has finished downloading, would you like to open the directory?", true, false);
+            if (dialog == DialogResult.Yes)
+            {
+                Process.Start("explorer.exe",
+                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants");
+            }
             try
             {
-                if (!Directory.Exists(
-                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants"))
-                    Directory.CreateDirectory(
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants");
-
-                string ID = $"https://www.roblox.com/asset/?id={ItemID}";
-                string FileSource;
-                using (WebClient web = new WebClient())
-                {
-                    web.DownloadFile(ID, $"{MainDirectory}\\TempFiles\\{ItemID}");
-                }
-
-                FileSource = File.ReadAllText($"{MainDirectory}\\TempFiles\\{ItemID}");
-
-                if (FileSource.Contains("<url>"))
-                {
-                    using (WebClient Web = new WebClient())
-                    {
-                        File.Delete($"{MainDirectory}\\TempFiles\\{ItemID}");
-                        Web.DownloadFile(GetShirtAsset(FileSource),
-                            $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants\\{ItemID}.png");
-                        DialogResult dialog =
-                            Forms.Notify(
-                                "Pants template has finished downloading, would you like to open the directory?", true,
-                                false);
-                        if (dialog == DialogResult.Yes)
-                        {
-                            Process.Start("explorer.exe",
-                                $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants");
-                        }
-                    }
-                }
-                else
-                {
-                    File.Move($"{MainDirectory}\\TempFiles\\{ItemID}",
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants\\{ItemID}.png");
-                    DialogResult dialog =
-                        Forms.Notify("Pants template has finished downloading, would you like to open the directory?",
-                            true, false);
-                    if (dialog == DialogResult.Yes)
-                    {
-                        Process.Start("explorer.exe",
-                            $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Pants");
-                    }
-                }
-
+                File.Delete($"{MainDirectory}\\TempFiles\\{ItemID}.p1");
             }
-            catch
-            {
-                Forms.Notify("Failed to download, do you have the correct ID?", false, true);
-            }
+            catch { }
         }
 
-        private void AccessorySave(string ID)
+        private void AccessorySave(string ItemID)
         {
-            try
+            if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Accessories"))
             {
-                if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Accessories")) Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Accessories");
+                Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Accessories");
+            }
 
-                using (WebClient web = new WebClient())
-                {
-                    web.DownloadFile($"https://www.roblox.com/asset/?id={ID}", $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Accessories\\{ID}.rbxm");
-                }
-                DialogResult dialog = Forms.Notify("Accessory has finished downloading, would you like to open the directory?", true, false);
-                if (dialog == DialogResult.Yes)
-                {
-                    Process.Start("explorer.exe",
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Accessories");
-                }
-            }
-            catch
+            string ID = $"https://assetdelivery.roblox.com/v1/asset?id={ItemID}";
+            string FileSource;
+            using (WebClient web = new WebClient())
             {
-                Forms.Notify("Failed to download, do you have the correct ID?", false, true);
+                web.DownloadFile(ID, $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Accessories\\{ItemID}.rbxm");
             }
+
+            DialogResult dialog = Forms.Notify("Accessory template has finished downloading, would you like to open the directory?", true, false);
+            if (dialog == DialogResult.Yes)
+            {
+                Process.Start("explorer.exe",
+                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Accessories");
+            }
+
         }
+
+
         private void Faces(string ItemID)
         {
+            if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces"))
+            {
+                Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces");
+            }
+
+            string ID = $"https://assetdelivery.roblox.com/v1/asset?id={ItemID}";
+            string FileSource;
+            using (WebClient web = new WebClient())
+            {
+                web.DownloadFile(ID, $"{MainDirectory}\\TempFiles\\{ItemID}.p1");
+            }
+
+            FileSource = File.ReadAllText($"{MainDirectory}\\TempFiles\\{ItemID}.p1");
+
+            string ShirtActual = GetShirtAsset(FileSource);
+
+            string ShirtActualID = ShirtActual.Replace("http://www.roblox.com/asset/?id=", "");
+
+            using (WebClient web = new WebClient())
+            {
+                web.DownloadFile($"https://assetdelivery.roblox.com/v1/asset/?id={ShirtActualID}", $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces\\{ItemID}.png");
+            }
+
+            DialogResult dialog = Forms.Notify("Faces template has finished downloading, would you like to open the directory?", true, false);
+            if (dialog == DialogResult.Yes)
+            {
+                Process.Start("explorer.exe",
+                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces");
+            }
             try
             {
-                if (!Directory.Exists(
-                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces"))
-                    Directory.CreateDirectory(
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces");
-
-                string ID = $"https://www.roblox.com/asset/?id={ItemID}";
-                string FileSource;
-                using (WebClient web = new WebClient())
-                {
-                    web.DownloadFile(ID, $"{MainDirectory}\\TempFiles\\{ItemID}");
-                }
-
-                FileSource = File.ReadAllText($"{MainDirectory}\\TempFiles\\{ItemID}");
-
-                if (FileSource.Contains("<url>"))
-                {
-                    using (WebClient Web = new WebClient())
-                    {
-                        File.Delete($"{MainDirectory}\\TempFiles\\{ItemID}");
-                        Web.DownloadFile(GetShirtAsset(FileSource),
-                            $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces\\{ItemID}.png");
-                        DialogResult dialog =
-                            Forms.Notify("Face has finished downloading, would you like to open the directory?", true,
-                                false);
-                        if (dialog == DialogResult.Yes)
-                        {
-                            Process.Start("explorer.exe",
-                                $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces");
-                        }
-                    }
-                }
-                else
-                {
-                    File.Move($"{MainDirectory}\\TempFiles\\{ItemID}",
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces\\{ItemID}.png");
-                    DialogResult dialog =
-                        Forms.Notify("Face has finished downloading, would you like to open the directory?", true,
-                            false);
-                    if (dialog == DialogResult.Yes)
-                    {
-                        Process.Start("explorer.exe",
-                            $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Faces");
-                    }
-                }
+                File.Delete($"{MainDirectory}\\TempFiles\\{ItemID}.p1");
             }
-            catch
-            {
-                Forms.Notify("Failed to download, do you have the correct ID?", false, true);
-            }
+            catch { }
         }
 
-        private void Animations(string ID)
+        private void Animations(string ItemID)
         {
-            try
+            if (!Directory.Exists($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations"))
             {
-                if (!Directory.Exists(
-                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations"))
-                {
-                    Directory.CreateDirectory(
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations");
-                    File.WriteAllText(
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations\\_README.txt",
-                        "TO GET THE KEYFRAMES PUT THE RBXM INTO STUDIO, COPY THE ANIMATION ID AND REDOWNLOAD");
-                }
-
-                using (WebClient web = new WebClient())
-                {
-                    web.DownloadFile($"https://www.roblox.com/asset/?id={ID}",
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations\\{ID}.rbxm");
-                }
-
-                DialogResult dialog =
-                    Forms.Notify("Accessory has finished downloading, would you like to open the directory?", true,
-                        false);
-                if (dialog == DialogResult.Yes)
-                {
-                    Process.Start("explorer.exe",
-                        $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations");
-                }
+                Directory.CreateDirectory($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations");
             }
-            catch
+
+            string ID = $"https://assetdelivery.roblox.com/v1/asset?id={ItemID}";
+            using (WebClient web = new WebClient())
             {
-                Forms.Notify("Failed to download, do you have the correct ID?", false, true);
+                web.DownloadFile(ID, $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations\\{ItemID}.rbxm");
             }
+
+            DialogResult dialog = Forms.Notify("Accessory template has finished downloading, would you like to open the directory?", true, false);
+            if (dialog == DialogResult.Yes)
+            {
+                Process.Start("explorer.exe",
+                    $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\AssetDownloader\\Animations");
+            }
+
         }
+
         private void RemoveText(object sender, EventArgs e)
         {
             if (textBox1.Text == "Asset ID")
@@ -462,7 +398,7 @@ namespace AssetDownloader
 
         private void AssetDownloader_Load(object sender, EventArgs e)
         {
-
+            Directory.CreateDirectory($"{MainDirectory}\\TempFiles");
         }
     }
 }
